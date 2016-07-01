@@ -1,6 +1,6 @@
 {
   "name": "draft-js-import-element",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "DraftJS: Import Element to ContentState",
   "main": "lib/main.js",
   "scripts": {
