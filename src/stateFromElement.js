@@ -237,6 +237,7 @@ class BlockGenerator {
   }
 
   processBlockElement(element: DOMElement) {
+    if(!element) return
     let tagName = element.nodeName.toLowerCase();
     let type = this.getBlockTypeFromTagName(tagName);
     let hasDepth = canHaveDepth(type);
