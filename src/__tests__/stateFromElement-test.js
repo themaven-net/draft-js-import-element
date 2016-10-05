@@ -36,7 +36,7 @@ describe('stateFromElement', () => {
     let contentState = stateFromElement(element);
     let rawContentState = removeBlockKeys(convertToRaw(contentState));
     expect(rawContentState).toEqual(
-      {entityMap: {}, blocks: [{text: 'Hello World', type: 'unstyled', depth: 0, inlineStyleRanges: [], entityRanges: []}]}
+      {entityMap: {}, blocks: [{text: 'Hello World', type: 'unstyled', data: {}, depth: 0, inlineStyleRanges: [], entityRanges: []}]}
     );
   });
 
@@ -52,7 +52,7 @@ describe('stateFromElement', () => {
     let contentState = stateFromElement(wrapperElement, options);
     let rawContentState = removeBlockKeys(convertToRaw(contentState));
     expect(rawContentState).toEqual(
-      {entityMap: {}, blocks: [{text: 'Superscript', type: 'unstyled', depth: 0, inlineStyleRanges: [{offset: 0, length: 11, style: 'SUPERSCRIPT'}], entityRanges: []}]}
+      {entityMap: {}, blocks: [{text: 'Superscript', type: 'unstyled', data: {}, depth: 0, inlineStyleRanges: [{offset: 0, length: 11, style: 'SUPERSCRIPT'}], entityRanges: []}]}
     );
   });
 });

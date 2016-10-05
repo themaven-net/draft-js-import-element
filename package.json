@@ -32,7 +32,7 @@
     "eslint-plugin-flow-vars": "^0.4.0",
     "eslint-plugin-react": "^5.1.1",
     "expect": "^1.20.1",
-    "flow-bin": "^0.25.0",
+    "flow-bin": "^0.32.0",
     "jsdom": "^9.1.0",
     "mocha": "^2.4.5",
     "react": "^15.0.2",
