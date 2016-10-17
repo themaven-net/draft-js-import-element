@@ -48,6 +48,7 @@ type ElementStyles = {[tagName: string]: Style};
 
 type Options = {
   elementStyles?: ElementStyles;
+  blockTypes?: {[key: string]: string};
 };
 
 const NO_STYLE = OrderedSet();
@@ -196,9 +197,9 @@ class BlockGenerator {
   }
 
   getBlockTypeFromTagName(tagName: string): string {
-
-    if (this.options && this.options.blockTypes && this.options.blockTypes[tagName]) {
-      return this.options.blockTypes[tagName];
+    let {blockTypes} = this.options;
+    if (blockTypes && blockTypes[tagName]) {
+      return blockTypes[tagName];
     }
 
     switch (tagName) {

@@ -32,8 +32,8 @@ You can optionally pass a second `Object` argument to `stateFromElement` with th
           },
 
           blockTypes: {
-            // support `<left>` as a custom block type `leftAlign`
-            'left': 'leftAlign'
+            // support `<center>` as a custom block type `CENTER_ALIGN`
+            'center': 'CENTER_ALIGN'
           }
         });
 
