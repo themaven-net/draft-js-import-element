@@ -294,7 +294,7 @@ class BlockGenerator {
       Array.from(element.childNodes).forEach(this.processNode, this);
     }
     if (SELF_CLOSING_ELEMENTS.hasOwnProperty(tagName)) {
-      this.processText('~');
+      this.processText('\u00A0');
     }
     block.entityStack.pop();
     block.styleStack.pop();

@@ -35,7 +35,7 @@
 <blockquote>test</blockquote>
 
 # Image Entity
-{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"a.jpg", "alt": "a"}}},"blocks":[{"key":"8r91a","text":"~","type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}]}]}
+{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"a.jpg", "alt": "a"}}},"blocks":[{"key":"8r91a","text":"\u00A0","type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}]}]}
 <p><img src="a.jpg" alt="a"/></p>
 
 # Entity
