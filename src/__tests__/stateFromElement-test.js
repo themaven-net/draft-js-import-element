@@ -40,7 +40,43 @@ describe('stateFromElement', () => {
     );
   });
 
-  it('supports custom element styles option', () => {
+  it('supports option customBlockFn (type)', () => {
+    let textNode = new TextNode('Hello World');
+    let element = new ElementNode('center', [], [textNode]);
+    let options = {
+      customBlockFn(element) {
+        let {nodeName} = element;
+        if (nodeName.toLowerCase() === 'center') {
+          return {type: 'center-align'};
+        }
+      },
+    };
+    let contentState = stateFromElement(element, options);
+    let rawContentState = removeBlockKeys(convertToRaw(contentState));
+    expect(rawContentState).toEqual(
+      {entityMap: {}, blocks: [{text: 'Hello World', type: 'center-align', data: {}, depth: 0, inlineStyleRanges: [], entityRanges: []}]}
+    );
+  });
+
+  it('supports option customBlockFn (data)', () => {
+    let textNode = new TextNode('Hello World');
+    let element = new ElementNode('p', [{name: 'align', value: 'right'}], [textNode]);
+    let options = {
+      customBlockFn(element) {
+        let {nodeName} = element;
+        if (nodeName.toLowerCase() === 'p' && element.getAttribute('align') === 'right') {
+          return {data: {textAlign: 'right'}};
+        }
+      },
+    };
+    let contentState = stateFromElement(element, options);
+    let rawContentState = removeBlockKeys(convertToRaw(contentState));
+    expect(rawContentState).toEqual(
+      {entityMap: {}, blocks: [{text: 'Hello World', type: 'unstyled', data: {textAlign: 'right'}, depth: 0, inlineStyleRanges: [], entityRanges: []}]}
+    );
+  });
+
+  it('supports option elementStyles', () => {
     let textNode = new TextNode('Superscript');
     let element = new ElementNode('sup', [], [textNode]);
     let wrapperElement = new ElementNode('div', [], [element]);
