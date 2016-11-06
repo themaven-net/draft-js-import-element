@@ -26,17 +26,27 @@ You can optionally pass a second `Object` argument to `stateFromElement` with th
 - `customBlockFn`: Function to specify block type/data based on HTML element. Example:
 ```js
 stateFromElement(element, {
-    // Should return null/undefined or an object with optional: type (string); data (plain object)
-    customBlockFn: (element) => {
-      let {tagName, style} = element;
-      if (tagName === 'ARTICLE') {
-        return {type: 'CUSTOM_BLOCK_TYPE'};
-      }
-      // Add support for <p style="text-align: center">...</p>
-      if (tagName === 'P' && style.textAlign) {
-        return {data: {textAlign: style.textAlign}};
-      }
+  // Should return null/undefined or an object with optional: type (string); data (plain object)
+  customBlockFn(element) {
+    let {tagName, style} = element;
+    if (tagName === 'ARTICLE') {
+      return {type: 'custom-block-type'};
     }
+    // Add support for <p style="text-align: center">...</p>
+    if (tagName === 'P' && style.textAlign) {
+      return {data: {textAlign: style.textAlign}};
+    }
+  }
+});
+```
+
+- `blockTypes`: Deprecated; use customBlockFn.
+```js
+stateFromElement(element, {
+  blockTypes: {
+    // support `<center>` as a custom block type `center-align`
+    'center': 'center-align'
+  }
 });
 ```
 
@@ -44,14 +54,9 @@ stateFromElement(element, {
 ```js
 stateFromElement(element, {
   elementStyles: {
-    // Support `<sup>` (superscript) tag as style:
+    // Support `<sup>` (superscript) inline element:
     'sup': 'SUPERSCRIPT'
   },
-
-  blockTypes: {
-    // support `<center>` as a custom block type `CENTER_ALIGN`
-    'center': 'CENTER_ALIGN'
-  }
 });
 ```
 
