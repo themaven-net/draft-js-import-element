@@ -237,6 +237,7 @@ class BlockGenerator {
       case 'pre': {
         return BLOCK_TYPE.CODE;
       }
+      case 'img':
       case 'figure': {
         return BLOCK_TYPE.ATOMIC;
       }
