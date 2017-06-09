@@ -140,6 +140,11 @@ const SPECIAL_ELEMENTS = {
   isindex: 1,
 };
 
+// These blocks do not contain other blocks
+var BLOCK_NO_BLOCKS = {
+  blockquote:1
+}
+
 // These elements are special because they cannot contain childNodes.
 const SELF_CLOSING_ELEMENTS = {img: 1};
 
@@ -282,11 +287,17 @@ class BlockGenerator {
         this.depth += 1;
       }
     }
-    this.blockStack.push(block);
+    var parentBlock = this.blockStack.slice(-1)[0];
+    var validBlock = parentBlock === undefined || !BLOCK_NO_BLOCKS[parentBlock.tagName];
+    if (validBlock) {
+      this.blockStack.push(block);
+    }      
     if (element.childNodes != null) {
       Array.from(element.childNodes).forEach(this.processNode, this);
     }
-    this.blockStack.pop();
+    if (validBlock) {
+      this.blockStack.pop();
+    }    
     if (allowRender && hasDepth) {
       this.depth -= 1;
     }
